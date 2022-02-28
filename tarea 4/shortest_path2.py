@@ -91,3 +91,17 @@ if __name__ == "__main__":
         dimension = 6
         
     dijsktra(grafo,inicio,final,etiquetas,dimension)
+with open('resultados_dijkstra.txt', 'a') as resultados:
+    resultados.write("\n")
+    resultados.write("Ejemplo:")
+    resultados.write("\n")
+    resultados.write(str(opcion))
+    resultados.write("\n")
+    resultados.write("Distancia más corta: " )
+    resultados.write("\n")
+    resultados.write(str(etiquetas[final]['costo']))
+    resultados.write("\n")
+    resultados.write("Ruta de la distancia más corta: ")
+    resultados.write("\n")
+    resultados.write(str(etiquetas[final]['pred'] + list(final)))
+resultados.close()

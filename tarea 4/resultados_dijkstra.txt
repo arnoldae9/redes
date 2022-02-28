@@ -1,0 +1,20 @@
+Ejemplo:
+1
+Distancia más corta: 
+10
+Ruta de la distancia más corta: 
+['a', 'c', 'e', 'f']
+
+Ejemplo:
+2
+Distancia más corta: 
+13
+Ruta de la distancia más corta: 
+['a', 'b', 'c', 'e', 'g']
+
+Ejemplo:
+3
+Distancia más corta: 
+3
+Ruta de la distancia más corta: 
+['a', 'b', 'e', 'g']

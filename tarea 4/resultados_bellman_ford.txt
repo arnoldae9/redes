@@ -1,0 +1,21 @@
+ Ejemplo:
+1
+ciclo negativo 
+
+Ejemplo:
+2
+ciclo negativo
+
+Ejemplo:
+3
+Distancia más corta: 
+-3
+Ruta de la distancia más corta: 
+['a', 'c', 'e', 'g']
+
+Ejemplo:
+4
+Distancia más corta: 
+0
+Ruta de la distancia más corta: 
+['a', 'd', 'f', 'g']
