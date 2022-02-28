@@ -1,0 +1,236 @@
+\documentclass{beamer}
+
+\usepackage[spanish]{babel}
+
+\usepackage{amsmath, amsfonts, amsthm, graphicx, geometry, lipsum}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=red,
+    pdftitle={Tarea 1},
+    }
+
+\usepackage[utf8]{inputenc}
+\usetheme{Antibes}
+\usepackage{graphicx}
+
+\usepackage{hyperref}
+
+\colorlet{mystruct}{structure} % Guarda la estructura actual
+\colorlet{structure}{white} % Nueva estructura
+\usestructuretemplate{\color{structure}}{}
+\beamertemplateshadingbackground{white!90}{blue!70}
+
+\usepackage[T1]{fontenc}
+
+%definitions
+\newcommand{\mcf}{{\bfseries \textit{Minimum cost flow problem}} }
+
+\usepackage{xcolor}
+\title{Capítulo 1: Introducción}
+\author{Lic. Arnoldo Del Toro Peña}
+\institute{ \color{blue}{\Large Universidad Autonoma de Nuevo Leon}}
+\date{\today}
+\logo{\includegraphics[scale = 0.25]{logo_uanl}}
+\begin{document}
+
+\begin{frame}
+ \titlepage
+\end{frame}
+
+\begin{frame}{Secciones}
+ \tableofcontents
+\end{frame}
+
+\section{Conceptos básicos}
+\begin{frame}
+
+ \begin{enumerate}
+  \item \bfseries{Shortest path problem.}
+  \item \bfseries{Maximum flow problem}
+  \item \bfseries{Minimum cost flow problem}
+ \end{enumerate}
+\end{frame}
+
+\section{Minimum cost flow problem}
+
+\begin{frame}{Minimum cost flow problem}
+ Este modelo es el más fundamental de todos los problemas de flujo de red. \\ 
+ Este modelo es sencillo de explicar: Se trata de determinar el envio a menor costo de acuerdo a la red en orden de satisfacer las demandas de ciertos nodos disponibles para otros nodos suministros.\\
+ Algunos ejemplos son: distribución de productos de plantas a depósitos, depósitos a minoristas, ruteo de automóviles en una red de calles urbanas entre otras.
+ 
+\end{frame}
+
+\begin{frame}{Definitions}
+ Sea $G=(N,A)$ una red dirigida definida por un conjunto $N$ de $n$ nodos y un conjunto A de m arcos dirigidos. Cada arco $(i,j) \in A$ tiene asociado un costo $c_{ij}$ que denota el costo por unidad enviada en ese arco. Ademas cada arco $(i,j) \in A$ tiene asociado una capacidad $u_{ij}$ que denota la cantidad máxima de monto que puede ser enviada en ese arco y un $l_{ij}$ que denota el minimo de monto que puede ser enviada por ese mismo arco. 
+\end{frame}
+
+\begin{frame}{Definitions 2}
+Nosotros asociaremos para cada nodo $i \in N$ un número entero $b(i)$ que representa oferta/demanda. Si $b(i)>0$ el nodo $i$ representa un nodo oferta; si $b(i)<0$ el nodo $i$ representa un nodo demanda y si $b(i)=0$ el nodo $i$ representa un nodo de transbordo (puente). Las variables de decisión en \textit{Minimum cost flow problem} representan lo enviado en cada arco $(i,j) \in A$ por $x_{ij}$.  
+\end{frame}
+
+\begin{frame}{Model formulated}
+ \begin{gather}
+  \text{Minimize} \, \sum_{  (i,j) \in A  } {c_{ij}x_{ij}}
+ \end{gather}
+subject to
+\begin{gather}
+ \sum_{  \{j:(i,j) \in A\}  } {x_{ij}} - \sum_{  \{j:(j,i) \in A\}  } {x_{ji}} = b(i) \hspace{0.3 in} \text{for all } \hspace{0.3 in} i \in N,  
+\end{gather}
+\begin{gather}
+ l_{ij} \leq x_{ij} \leq u_{ij} \hspace{0.3 in} \text{for all} \hspace{0.3 in} (i,j) \in A,
+\end{gather}
+Nota: $\displaystyle \sum_{i=1}^{n} b(i) = 0$
+
+\end{frame}
+
+\begin{frame}{Matrix Form}
+\begin{gather}
+ \text{Minimize} \hspace{0.2 in} cx
+\end{gather}
+subject to
+\begin{gather}
+ N x = b \\
+ l \leq x \leq u
+\end{gather}
+Nota: $N$ es una matriz $n \times m$ llamada matriz incidente nodo-arco, cada columna dentro de la matriz representa una $x_{ij}$.
+\end{frame}
+
+\section{Shortest path problem}
+\begin{frame}{Shortest path problem}
+ Este problema es tal vez el más simple de todos.\\ Para este problema trataremos de encontrar el camino de mínimo costo para un específico nodo de partida $s$ hacia un nodo específico de destino $t$. \\
+ Para este problema tenemos que $b(s) = 1, \, b(t)=-1$ y $b(i)=0$ para todos los demás nodos. \newline Asumiremos que cada $(ij) \in A$ tiene asociado un $c_{ij}$ costo.
+\end{frame}
+
+\begin{frame}{Ejemplo Shortest path problem}
+ \begin{figure} 
+ \centering
+  \includegraphics[scale = 0.15]{Shortest}
+  \caption{Shortest path problem with solution}
+ \end{figure}
+
+\end{frame}
+
+\section{Maximum flow problem}
+\begin{frame}{Maximum flow problem}
+ En esencia este problema es el modelo complementario de Shortest path problem. \newline
+ En el Shortest path problem en cada uno de arcos tenemos un costo asociado; en contraste en el Maximum flow problem no tenemos costos pero estamos restringuidos por flujos acotados.Dicho esto tenemos: $$b(i) = 0, \,  \forall \, i \in N$$
+ $$c_{ij} = 0, \, \forall \, (i,j) \in A$$
+ E introduciremos un arco extra $(t,s)$ con un costo: $c_{ts} = -1$ y un límite de flujo de $u_{ts} = \infty$
+\end{frame}
+
+\begin{frame}{Ejemplo Maximum flow problem}
+\begin{figure}
+ \centering
+ \includegraphics[scale = 0.15]{Maximum}
+ \caption{Maximum flow problem with solution}
+\end{figure}
+ 
+\end{frame}
+
+\section{Assigment prroblem}
+\begin{frame}{Assigment prroblem}
+ Este probllema consiste en dos conjuntos de misma cardinalidad, ($|N_1| = |N_2|$), una colección de pares ($A \in N_1 \times N_2$) denota los posibles asignamientos y un costo ($c_{ij}$) asociado a cada elemento ($(i,j) \in A$). En este problema queremos encontar los pares que asocien un elemento de $N_1$ a un solo elemento de $N_2$ con el costo mínimo posible. 
+\end{frame}
+
+\begin{frame}{Ejemplo Assigment problem}
+ \begin{figure}
+  \centering
+  \includegraphics[scale = 0.25]{Assigment}
+  \caption{Ejemplo obtenido de: \href{https://slidetodoc.com/network-flow-problems-the-assignment-problem-consider-the/}{assigment}  }
+ \end{figure}
+
+\end{frame}
+
+\section{Transportation problem}
+
+\begin{frame}{Transportation problem}
+ Este problema es un caso especial de Minimum cost flow problem con propiedad de que el conjunto de nodos $N$ es partido en dos conjuntos $N_1$ y $N_2$ (es posible que no sean iguales en cardinalidad) talque cada nodo en $N_1$ es un nodo de oferta mientras que cada nodo en $N_2$ es un nodo de demanda y por último cada arco $(i,j) \in A, \, i \in N_1 \, \text{ y } j \in N_2 $
+\end{frame}
+
+\begin{frame}{Ejemplo Transportation problem}
+ \begin{figure}
+  \centering
+  \includegraphics[scale = 0.35]{Transportation}
+  \caption{Ejemplo obtenido de: \href{https://towardsdatascience.com/operations-research-in-r-transportation-problem-1df59961b2ad}{Transportation}}
+ \end{figure}
+
+\end{frame}
+
+\section{Circulation problem}
+\begin{frame}{Circulation problem}
+ Este problema es un \mcf con la propiedad de que cada nodo es un nodo transbordo esto quiere decir que $b(i) = 0$ para toda $i \in N$ en esta instancia lo deseable es encontrar un camino factible que honre las restricciones ($l_{ij}, \, u_{ij}$) de cada arco por las que fluje $x_{ij}$ con el mínimo costo posible.
+\end{frame}
+
+
+\section{Convex cost flow problem}
+\begin{frame}{Convex cost flow problem}
+ En \mcf asumimos que los costos de cualquier arco varia linealmente con el monto en cada flujo. Convex cost flow problem tiene una estructura más compleja en costos, en este problema el costo depende de una función del monto en cada flujo.
+\end{frame}
+
+\section{Generalized flow problems}
+\begin{frame}{Generalized flow problems}
+En este problema los arcos  ''consumen'' o ''generan'' flujo. Si $x_{ij}$ unidades  fluyen por el arco $(i,j)$, entonces $\mu_{ij} x_{ij}$ unidades son las que llegan al nodo $j$; donde $\mu_{ij}$ es un multiplicador positivo asociado a cada arco. Si $0<\mu_{ij}<1$ el arco "pierde", y si $1<\mu_{ij}< \infty$ el arco ''gana''.      
+\end{frame}
+
+
+\section{Multicommodity flow problems}
+
+\begin{frame}{Multicommodity flow problems}
+Los modelos \mcf el flujo es de un solo producto a través de una red. En un Multicommodity flow problems tendremos múltiples artículos utilizando las mismas redes.  
+\end{frame}
+
+
+\section{Others models}
+
+\begin{frame}{Others models}
+ En esta sección veremos otros dos modelos:
+ \begin{enumerate}
+  \item Minimum spanning tree problem.
+  \item Matching problem.
+ \end{enumerate}
+
+\end{frame}
+
+\subsection{Minimum spanning tree problem}
+
+\begin{frame}{Minimum spanning tree problem}
+ En este problema todos los nodos forman una red no dirigida. El costo del árbol de expansión es la suma de los costos de estos arcos. En el minimum spanning tree problem se desea identificar la expansión con el costo mínimo.
+\newline Ejemplo: designing local access networks.
+ \end{frame}
+
+\subsection{Matching problems}
+
+\begin{frame}{Matching problems}
+Un problema {\textit{Matching}} es un conjunto de arcos con la propiedad donde cada nodo es incidente a lo sumo en un arco del conjunto; este emparejamiento induce un emparejamiento de los nodos en el gráfico usando los arcos en A.  \newline Tenemos dos sub-clases para este problema:
+\begin{enumerate}
+ \item Bipartite matching problems.
+ \item Nonbipartite matching problems.
+\end{enumerate}
+
+\end{frame}
+
+\subsubsection{Bipartite matching problems}
+
+\begin{frame}{Cardinality matching}
+En el problema bipartito de máxima cardinalidad se
+busca un emparejamiento que asocie el mayor número de nodos posibles de un grafo bipar-tito no dirigido
+\end{frame}
+
+\begin{frame}{Weighted matching problem}
+Es conocido como el problema de asignación... 
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

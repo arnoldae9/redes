@@ -1,0 +1,297 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amsthm, graphicx, lipsum}
+\usepackage[margin = 1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=red,
+    pdftitle={Tarea 1},
+    }
+\usepackage{fancyvrb}
+\usepackage{fancyhdr, lastpage}
+\pagestyle{fancy}
+\lhead{Optimización de flujo en redes}
+\rhead{\today}
+\cfoot{Page \thepage\ of \pageref{LastPage}}
+
+\usepackage{etoolbox} %Use carefully!
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+
+\usepackage[Glenn]{fncychap}
+%Options: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
+
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+
+\newtcbtheorem{theo}%
+  {Theorem}{}{theorem}
+  
+\usepackage{siunitx}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{tikz}
+%\usetikzlibrary{arrows,snakes,backgrounds}
+\usetikzlibrary{arrows}
+
+\setlength\headheight{15pt}
+
+\author{Lic. Arnoldo Del Toro Peña}
+\title{Tarea 1 Optimización de flujo en redes}
+\usepackage[spanish]{babel}
+
+\newcommand{\ds}{\displaystyle}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+      \item {\bfseries Variant of the transportation problem: }
+            \\ Considere una variante del problema de transporte, donde la suma de la demanda excede a la suma del suministro, y una penalización $p_j$ por cada unidad no satisfecha en las demandas establecidas.
+            \\ Sea $Z:$ el costo total de distribución, y $x_{ij}$  (con $i= 1,2,3 \dots m$, $j=1,2,3 \dots n$, suponiendo que tenemos $m$ nodos de suministro y $n$ nodos de demanda), el número de unidades que se distribuyen del suministro $i$ a la demanda $j$.
+            \\ Definamos $c_{ij}$ como el costo por unidad enviada del nodo suministro  $i$ al nodo demanda $j$.
+            \\ Definamos $s_{i}$ como el nodo de suministro i.
+            \\ Definamos $d_j$ como el nodo de demanda j.
+            \\ Función objetivo:
+            \[\text{Minimizar} \, Z = \sum_{i=1} ^{m} { \sum_{j=1}^{n} { c_{ij} x_{ij} }  } \]
+            Sujeta a:
+            \[ \sum_{i=1}^{m} {x_{ij}} = s_{i} \, \text{para toda } i = 1,2,3 \dots m, \]
+            \[ \sum_{j=1}^{n} {x_{ij}} = d_{j} \, \text{para toda } j = 1,2,3 \dots n, \]
+            y
+            \[ x_{ij} \geq 0, \, \text{para toda } i \text{ y } j \]
+            El modelo anterior es para un problema en el cual la suma de suministros es igual a la suma de demandas, $\left( \displaystyle \sum_{i=1}^{m} {s_i} = \sum_{j=1}^{n} {d_j} \right)$, para nuestro problema esto no sucede, por lo cual tendremos que agregar un nodo  suministro ''artificial".
+            \\ Esto nos provocará tener $m+1$ nodos de suministros, además que tendremos unos costos de penalización por cada unidad que sea transportada del nodo de suministro ''artificial'' hacia uno de los nodos de demanda ya existentes.
+            \\ Definamos los costos de penalización como $c_{(m+1),j} = p_j$, y \\ $s_{m+1} = \left( \displaystyle \sum_{j=1}^{n} {d_j} - \sum_{i=1}^{m} {s_i}  \right) > 0.$
+            \\ Con lo anterior podemos redefinir el modelo de la siguiente manera:
+            \\ Función objetivo:
+            \[\text{Minimizar} \, Z = \sum_{i=1} ^{m+1} { \sum_{j=1}^{n} { c_{ij} x_{ij} }  } \]
+            Sujeta a:
+            \[ \sum_{i=1}^{m+1} {x_{ij}} = s_{i} \, \text{para toda } i = 1,2,3 \dots m+1, \]
+            \[ \sum_{j=1}^{n} {x_{ij}} = d_{j} \, \text{para toda } j = 1,2,3 \dots n, \]
+            y
+            \[ x_{ij} \geq 0, \, \text{para toda } i \text{ y } j \]
+            %intento de red:
+
+            \begin{center}
+                  \begin{tikzpicture}
+                        %suministros
+                        \node[draw](s1)[circle] at (0,0) {$s_1$};
+                        \node[draw](s2)[circle] at (0,-1) {$s_2$};
+                        \node(dots) at (0,-2){\vdots};
+                        \node[draw](sm)[circle] at (0,-3) {$s_m$};
+                        % nodo extra de suministro
+                        \node[draw] (sm+1)[circle] at (0,-5) {$s_{m+1}$};
+
+                        %costos
+                        \node(c11) at (2.5,0.25) {$c_{11}$};
+                        \node(cmn) at (2.5,-2.75) {$c_{mn}$};
+
+                        %demandas
+                        \node[draw](d1)[circle] at (5,0) {$d_1$};
+                        \node[draw](d2)[circle] at (5,-1) {$d_2$};
+                        \node(dots) at (5,-2){\vdots};
+                        \node[draw](dn)[circle] at (5,-3) {$d_n$};
+
+                        %lineas
+                        \draw[black, -latex', line width=1pt] (s1) -- (d1);
+                        \draw[black, -latex', line width=1pt] (s1) -- (d2);
+                        \draw[black, -latex', line width=1pt] (s1) -- (dn);
+                        \draw[black, -latex', line width=1pt] (s2) -- (d1);
+                        \draw[black, -latex', line width=1pt] (s2) -- (d2);
+                        \draw[black, -latex', line width=1pt] (s2) -- (dn);
+                        \draw[black, -latex', line width=1pt] (sm) -- (d1);
+                        \draw[black, -latex', line width=1pt] (sm) -- (d2);
+                        \draw[black, -latex', line width=1pt] (sm) -- (dn);
+                        %lineas del nodo extra
+                        \draw[red, -latex', line width=1pt] (sm+1) -- (d1);
+                        \draw[red, -latex', line width=1pt] (sm+1) -- (d2);
+                        \draw[red, -latex', line width=1pt] (sm+1) -- (dn);
+
+                  \end{tikzpicture}
+            \end{center}
+
+
+      \item {\bfseries Dating problem: }
+            \\ Definamos un conjunto  $ N = \ds \left\{ h_1, h_2, \dots h_p,m_1,m_2 \dots m_p  \right\}$ como el conjunto de nodos, y un conjunto $A$ como el total de los arcos $(i,j)$ que corresponden a las parejas $(h_i,m_j)$ mutuamente compatibles.
+            \\ Buscamos maximizar el número de parejas mutuamente compatibles, tomando en cuenta que si un $h_i$ es asignado a un $m_j$ este ya no puede ser asignado a otro $m_j$ distinto y visceversa, esta relación se puede representar por una red sin dirección.
+            \\ El objetivo es encontrar el máximo de parejas mutuamente compatibles.
+            \\ Para nuestro problema definiremos $\delta(i)$ como el conjunto de todos los arcos adyacentes en el nodo $i$.
+            \\ Además definiremos $x_{ij} = \left\{ \begin{array}{l} \text{1 si seleccionamos el arco } (i,j) \\ \text{0 en otro caso} \end{array} \right. $
+            \\ Función objetivo:
+            \[ \ds  \text{Maximizar: } \sum_{(i,j) \in A}  {x_{ij}} \]
+            \\ Sujeto a:
+            \[ \sum_{(i,j) \in \delta(i)} {x_{ij}} \leq 1, \hspace{0.3in} i \in N\]
+            \[ x_{ij} \, \in \{ 0,1 \}, \, (i,j) \in A \]
+            % segundo intento de red
+
+            \begin{center}
+                  \begin{tikzpicture}
+                        %hombres
+                        \node[draw] (h1) [circle] at (0,0) {$h_1$};
+                        \node[draw] (h2) [circle] at (2,0) {$h_2$};
+                        \node       (puntos) [circle] at (4,0) {\dots};
+                        \node[draw] (hp) [circle] at (6,0) {$h_p$};
+                        %mujeres
+                        \node[draw] (m1) [circle] at (0,-4) {$m_1$};
+                        \node[draw] (m2) [circle] at (2,-4) {$m_2$};
+                        \node (puntos)  at (4,-4) {\dots};
+                        \node[draw] (mp) [circle] at (6,-4) {$m_p$};
+
+                        %lines
+                        \path (h1) edge (m1);
+                        \path (h1) edge (m2);
+                        \path (h1) edge (mp);
+
+                        \path (h2) edge (m1);
+                        \path (h2) edge (m2);
+                        \path (h2) edge (mp);
+
+                        \path (hp) edge (m1);
+                        \path (hp) edge (m2);
+                        \path (hp) edge (mp);
+
+                  \end{tikzpicture}
+            \end{center}
+
+            El dibujo anterior solo ilustra las posibles parejas mutuamente compatibles, algunas de las conexiones puede que no existan.
+
+
+
+
+      \item {\bfseries Seat sharing problem: }
+            \\ Tenemos $k$ familias, cada familia $k$ tiene $n_k$ integrantes, además contamos con $m$ carros y cada carro tiene una capacidad $c_m$.
+            \\ Sea $I = \{1,2,3 \dots k\}$, $J = \{1,2,3 \dots m\}$.
+            \\ Sea $u_{ij} = 1$ el flujo máximo de integrantes por familia $i$ al carro $j$, con $i \in I$ y $j \in J$.
+            \\ Sea $x_{ij}$ la cantidad de integrantes enviados de la familia $i$ al carro $j$.
+            \\ Función objetivo:
+            \[ \text{Minimizar }   \sum_{j}  {c_{j}} - \sum_{i} \sum_j {x_{ij}}\]
+            Sujeto a:
+            \[ x_{ij} \leq u_{ij}, \hspace{0.1in} \forall i \in I, \forall j \in J \]
+            \[ \sum_{j \in J} {x_{ij}} = n_i, \hspace{0.1 in} \text{ para cada } i \in I \]
+            \[ \sum_{i \in I} {x_{ij}} \leq c_j, \hspace{0.1 in} \text{ para cada } j \in J \]
+            \[x_{ij} \geq 0 \, \forall i \in I,\forall j \in J\]
+            %tercer intento de red
+            \begin{center}
+                  \begin{tikzpicture}
+                        %familias
+                        \node[draw](f1)[circle] at (0,0) {$f_1$};
+                        \node[draw](f2)[circle] at (0,-1) {$f_2$};
+                        \node(dots) at (0,-2){\vdots};
+                        \node[draw](fk)[circle] at (0,-3) {$f_k$};
+
+                        %restricciones uij
+                        \node(u11) at (2.5,0.25) {$u_{11}$};
+                        \node(ukm) at (2.5,-2.75) {$u_{km}$};
+
+                        %carros
+                        \node[draw](c1)[circle] at (5,0) {$c_1$};
+                        \node[draw](c2)[circle] at (5,-1) {$c_2$};
+                        \node(dots) at (5,-2){\vdots};
+                        \node[draw](cm)[circle] at (5,-3) {$c_m$};
+
+                        %lineas
+                        \draw[black, -latex', line width=1pt] (f1) -- (c1);
+                        \draw[black, -latex', line width=1pt] (f1) -- (c2);
+                        \draw[black, -latex', line width=1pt] (f1) -- (cm);
+                        \draw[black, -latex', line width=1pt] (f2) -- (c1);
+                        \draw[black, -latex', line width=1pt] (f2) -- (c2);
+                        \draw[black, -latex', line width=1pt] (f2) -- (cm);
+                        \draw[black, -latex', line width=1pt] (fk) -- (c1);
+                        \draw[black, -latex', line width=1pt] (fk) -- (c2);
+                        \draw[black, -latex', line width=1pt] (fk) -- (cm);
+
+                        %integrantes de las familias
+                        \node[draw](n1) at (-1,0) {$n_1$};
+                        \node[draw](n2) at (-1,-1) {$n_2$};
+                        \node[draw](nk) at (-1,-3) {$n_k$};
+
+                        %capacidades de los carros
+                        \node[draw](c1) at (6,0) {$c_1$};
+                        \node[draw](c2) at (6,-1) {$c_2$};
+                        \node[draw](cm) at (6,-3) {$c_m$};
+
+
+                  \end{tikzpicture}
+            \end{center}
+
+
+
+      \item {\bfseries Police patrol problem }
+            \\ Definamos el conjunto de nodos tal que $N = \{ p_1,p_2,p_3,s_1,s_2,s_3 \}$ y el conjunto de índices $I= \{1,2,3\}$, $J= \{1,2,3\}$ dónde cada $p_i$ con $i \in I$ denota un precinto, y cada $s_j$ con $j \in J$ denota cada turno.
+            \\ Sea $x_{ij}$ el número de patrullas asignadas en el turno $i$ al precinto $j$.
+            \\ Sea $u_{ij} = \begin{pmatrix} &s_1&s_2&s_3\\ p_1&3&7&5 \\ p_2&5&7&10 \\ p_3&8&12&10 \end{pmatrix}$ el número máximo de patrullas asignadas en el turno $i$ al precinto $j$.
+            \\ Sea $l_{ij} = \begin{pmatrix} &s_1&s_2&s_3\\p_1&2&4&3 \\ p_2&3&6&5 \\ p_3&5&7&6 \end{pmatrix}$ el número mínimo de patrullas asignadas en el turno $i$ al precinto $j$.
+            \\ Sea $c_j = \begin{pmatrix} 10 & 14 & 13 \end{pmatrix}$ el número de patrullas necesarias por precinto $j$.
+            \\ Sea $d_i = \begin{pmatrix} 10 & 20 & 18 \end{pmatrix}$ el número de patrullas necesarias por turno $i$.
+            \\ Función objetivo:
+            \[\text{Minimizar } \sum_i \sum_j x_{ij} \]
+            Sujeto a:
+            \[ \sum_{i}  {x_{ij}} \geq c_j \, \text{ para cada } j \in J\]
+            \[ \sum_{j} {x_{ij}} \geq d_i \, \text{ para cada } i \in I\]
+            \[ l_{ij}\leq x_{ij} \leq u_{ij} \hspace{0.3in} \text{para cada } i \text{ y } j\]
+            \[ x_{ij} \geq 0, \hspace{0.1in} \forall i \in I, \forall j \in J \]
+
+
+            %cuarto intento de red
+            \begin{center}
+                  \begin{tikzpicture}
+                        %turnos
+                        \node[draw](s1)[circle] at (0,0.5)  {$s_1$};
+                        \node[draw](s2)[circle] at (0,-1) {$s_2$};
+                        \node[draw](s3)[circle] at (0,-2.5) {$s_3$};
+
+                        %restricciones uij
+                        \node(u11) at (2.5,0.25)  {$2 \leq x_{11} \leq 3$};
+                        \node(u13) at (2.5,-2.75) {$6 \leq x_{13} \leq 10$};
+
+                        %patrullas
+                        \node[draw](p1)[circle] at (5,0.5) {$p_1$};
+                        \node[draw](p2)[circle] at (5,-1) {$p_2$};
+                        \node[draw](p3)[circle] at (5,-2.5) {$p_3$};
+
+                        %lineas
+                        \draw[black, -latex', line width=1pt] (s1) -- (p1);
+                        \draw[black, -latex', line width=1pt] (s1) -- (p2);
+                        \draw[black, -latex', line width=1pt] (s1) -- (p3);
+                        \draw[black, -latex', line width=1pt] (s2) -- (p1);
+                        \draw[black, -latex', line width=1pt] (s2) -- (p2);
+                        \draw[black, -latex', line width=1pt] (s2) -- (p3);
+                        \draw[black, -latex', line width=1pt] (s3) -- (p1);
+                        \draw[black, -latex', line width=1pt] (s3) -- (p2);
+                        \draw[black, -latex', line width=1pt] (s3) -- (p3);
+
+                        %patrullas por turno
+                        \node[draw](d1) at (-1,0.5)  {10};
+                        \node[draw](d2) at (-1,-1) {20};
+                        \node[draw](d3) at (-1,-2.5) {18};
+
+                        %patrullas por precinto
+                        \node[draw](c1) at (6,0.5)  {10};
+                        \node[draw](c2) at (6,-1) {14};
+                        \node[draw](c3) at (6,-2.5) {13};
+
+
+                  \end{tikzpicture}
+            \end{center}
+            En la red anterior, todos los $c_j$ y $d_i$ son los valores mínimos que pide el problema.
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
