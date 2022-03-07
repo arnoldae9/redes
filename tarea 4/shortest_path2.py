@@ -50,7 +50,7 @@ if __name__ == "__main__":
                     'd' : {'costo' : inf, 'pred' : []},
                     'e' : {'costo' : inf, 'pred' : []},
                     'f' : {'costo' : inf, 'pred' : []}}
-        inicio = 'a'
+        inicio = 'b'
         final = 'f'
         dimension = 5 #TODO la dimensión es nodos - 1
     elif opcion == 2:
