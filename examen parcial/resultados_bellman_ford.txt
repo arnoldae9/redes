@@ -1,117 +1,13 @@
- Ejemplo:
-1
-ciclo negativo 
-
-Ejemplo:
-2
-ciclo negativo
 
 Ejemplo:
 3
 Distancia más corta: 
 -3
 Ruta de la distancia más corta: 
-['a', 'c', 'e', 'g']
-
-Ejemplo:
-4
-Distancia más corta: 
-0
-Ruta de la distancia más corta: 
-['a', 'd', 'f', 'g'] 
+['a', 'c', 'e', 'g'] 
 Ejemplo:
 1
 ciclo negativo
-Ejemplo:
-2
-Distancia más corta: 
-0
-Ruta de la distancia más corta: 
-['a', 'b', 'c', 'e', 'g']
-Ejemplo:
-1
-Distancia más corta: 
-0
-Ruta de la distancia más corta: 
-['a', 'b', 'd', 'f']
-Ejemplo:
-1
-Distancia más corta: 
-22
-Ruta de la distancia más corta: 
-['a', 'b', 'd', 'f']
-Ejemplo:
-1
-Distancia más corta: 
-22
-Ruta de la distancia más corta: 
-['a', 'b', 'd', 'f'] 
-Ejemplo:
-1
-ciclo negativo 
-Ejemplo:
-1
-ciclo negativo 
-Ejemplo:
-1
-ciclo negativo 
-Ejemplo:
-1
-ciclo negativo 
-Ejemplo:
-1
-ciclo negativo 
-Ejemplo:
-1
-ciclo negativo
-Ejemplo:
-1
-Distancia más corta: 
-0
-Ruta de la distancia más corta: 
-['a', 'b', 'd', 'f']
-Ejemplo:
-1
-Distancia más corta: 
-0
-Ruta de la distancia más corta: 
-['a', 'b', 'd', 'f']
-Ejemplo:
-1
-Distancia más corta: 
-0
-Ruta de la distancia más corta: 
-['a', 'b', 'd', 'f']
-Ejemplo:
-1
-Distancia más corta: 
-22
-Ruta de la distancia más corta: 
-['a', 'b', 'd', 'f']
-Ejemplo:
-1
-Distancia más corta: 
-22
-Ruta de la distancia más corta: 
-['a', 'b', 'd', 'f']
-Ejemplo:
-1
-Distancia más corta: 
-22
-Ruta de la distancia más corta: 
-['a', 'b', 'd', 'f']
-Ejemplo:
-1
-Distancia más corta: 
-0
-Ruta de la distancia más corta: 
-['a', 'b', 'd', 'f']
-Ejemplo:
-1
-Distancia más corta: 
-0
-Ruta de la distancia más corta: 
-['a', 'b', 'd', 'f']
 Ejemplo:
 1
 Distancia más corta: 
@@ -123,40 +19,163 @@ Ejemplo:
 Distancia más corta: 
 0
 Ruta de la distancia más corta: 
-['a', 'b', 'd', 'f'] 
+['f']
+Ejemplo:
+2
+Distancia más corta: 
+0
+Ruta de la distancia más corta: 
+['g']
+Ejemplo:
+3
+Distancia más corta: 
+0
+Ruta de la distancia más corta: 
+['g']
 Ejemplo:
 1
-ciclo negativo 
+Distancia más corta: 
+9223372036854775807
+Ruta de la distancia más corta: 
+['f']
 Ejemplo:
 1
-ciclo negativo 
+Distancia más corta: 
+0
+Ruta de la distancia más corta: 
+['f']
 Ejemplo:
 1
-ciclo negativo 
+Distancia más corta: 
+0
+Ruta de la distancia más corta: 
+['f']
 Ejemplo:
 1
-ciclo negativo 
+Distancia más corta: 
+0
+Ruta de la distancia más corta: 
+['f']
 Ejemplo:
 1
-ciclo negativo 
+Distancia más corta: 
+0
+Ruta de la distancia más corta: 
+['f']
 Ejemplo:
 1
-ciclo negativo 
+Distancia más corta: 
+0
+Ruta de la distancia más corta: 
+['f']
 Ejemplo:
 1
-ciclo negativo 
+Distancia más corta: 
+0
+Ruta de la distancia más corta: 
+['f']
 Ejemplo:
 1
-ciclo negativo 
+Distancia más corta: 
+0
+Ruta de la distancia más corta: 
+['f']
 Ejemplo:
 1
-ciclo negativo 
+Distancia más corta: 
+0
+Ruta de la distancia más corta: 
+['f']
 Ejemplo:
 1
-ciclo negativo 
+Distancia más corta: 
+4
+Ruta de la distancia más corta: 
+['f']
+Ejemplo:
+1
+Distancia más corta: 
+4
+Ruta de la distancia más corta: 
+['f']
+Ejemplo:
+1
+Distancia más corta: 
+4
+Ruta de la distancia más corta: 
+['f']
+Ejemplo:
+1
+Distancia más corta: 
+4
+Ruta de la distancia más corta: 
+['d', 'f']
+Ejemplo:
+2
+Distancia más corta: 
+4
+Ruta de la distancia más corta: 
+['f', 'g']
+Ejemplo:
+3
+Distancia más corta: 
+1
+Ruta de la distancia más corta: 
+['f', 'g']
+Ejemplo:
+3
+Distancia más corta: 
+2
+Ruta de la distancia más corta: 
+['f', 'g']
+Ejemplo:
+3
+Distancia más corta: 
+2
+Ruta de la distancia más corta: 
+['f', 'g']
+Ejemplo:
+2
+Distancia más corta: 
+4
+Ruta de la distancia más corta: 
+['f', 'g']
+Ejemplo:
+4
+Distancia más corta: 
+9223372036854775807
+Ruta de la distancia más corta: 
+['g']
+Ejemplo:
+4
+Distancia más corta: 
+2
+Ruta de la distancia más corta: 
+['f', 'g'] 
+Ejemplo:
+1
+ciclo negativo
+Ejemplo:
+1
+Distancia más corta: 
+4
+Ruta de la distancia más corta: 
+['d', 'f'] 
 Ejemplo:
 1
 ciclo negativo 
 Ejemplo:
 1
 ciclo negativo
+Ejemplo:
+1
+Distancia más corta: 
+4
+Ruta de la distancia más corta: 
+['d', 'f']
+Ejemplo:
+1
+Distancia más corta: 
+4
+Ruta de la distancia más corta: 
+['d', 'f']

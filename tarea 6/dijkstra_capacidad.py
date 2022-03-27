@@ -1,20 +1,20 @@
 import sys
 
 def dijsktra(grafo,ini,fin,etiquetas,dimension): #TODO definicion de la funcion dijsktra
-    etiquetas[inicio]['costo'] = 0
+    etiquetas[inicio]['costo'] = inf
     visitados = [] 
     temporal = ini
     
     for i in range(dimension):
-        if temporal not in visitados:
-            visitados.append(temporal)
-            print(visitados)
+        for temporal in grafo.keys():
             for j in grafo[temporal]:
-                if j not in visitados:
-                    costo = etiquetas[temporal]['costo'] + grafo[temporal][j]
-                    if costo < etiquetas[j]['costo']:
-                        etiquetas[j]['costo'] = costo
+                capacidad = min(etiquetas[temporal]['costo'],grafo[temporal][j])
+                capacidad2 = max(capacidad,etiquetas[j]['costo'])
+                if capacidad == capacidad2:
+                    etiquetas[j]['costo'] = capacidad2
+                    if temporal not in etiquetas[j]['pred']:
                         etiquetas[j]['pred'] = etiquetas[temporal]['pred'] + list(temporal)
+                
         lista = []
         for k in etiquetas.items():
             if k[0] not in visitados:
@@ -30,6 +30,7 @@ def dijsktra(grafo,ini,fin,etiquetas,dimension): #TODO definicion de la funcion 
                     temporal = k[0]
     print("Distancia más corta: " + str(etiquetas[fin]['costo'])) #TODO imprime el costo del nodo final
     print("Ruta de la distancia más corta: " + str(etiquetas[fin]['pred'] + list(fin))) #TODO imprime la ruta almacenada en el nodo final
+    print(etiquetas)
 if __name__ == "__main__":
     inf = sys.maxsize
     opcion = int(input("Digite una opcion: "))
@@ -45,11 +46,11 @@ if __name__ == "__main__":
                     'e' : {'c':5,'d':11,'f':1},
                     'f' : {'d':22,'e':1}}
         etiquetas = {   'a' : {'costo' : inf, 'pred' : []},
-                    'b' : {'costo' : inf, 'pred' : []},
-                    'c' : {'costo' : inf, 'pred' : []},
-                    'd' : {'costo' : inf, 'pred' : []},
-                    'e' : {'costo' : inf, 'pred' : []},
-                    'f' : {'costo' : inf, 'pred' : []}}
+                    'b' : {'costo' : -inf, 'pred' : []},
+                    'c' : {'costo' : -inf, 'pred' : []},
+                    'd' : {'costo' : -inf, 'pred' : []},
+                    'e' : {'costo' : -inf, 'pred' : []},
+                    'f' : {'costo' : -inf, 'pred' : []}}
         inicio = 'a'
         final = 'f'
         dimension = 5 #TODO la dimensión es nodos - 1
@@ -62,12 +63,12 @@ if __name__ == "__main__":
                     'f' : {'c':3,'d':4,'e':1,'g':7},
                     'g' : {'e':5,'f':7}}
         etiquetas = {   'a' : {'costo' : inf, 'pred' : []},
-                    'b' : {'costo' : inf, 'pred' : []},
-                    'c' : {'costo' : inf, 'pred' : []},
-                    'd' : {'costo' : inf, 'pred' : []},
-                    'e' : {'costo' : inf, 'pred' : []},
-                    'f' : {'costo' : inf, 'pred' : []},
-                    'g' : {'costo' : inf, 'pred' : []}}
+                    'b' : {'costo' : -inf, 'pred' : []},
+                    'c' : {'costo' : -inf, 'pred' : []},
+                    'd' : {'costo' : -inf, 'pred' : []},
+                    'e' : {'costo' : -inf, 'pred' : []},
+                    'f' : {'costo' : -inf, 'pred' : []},
+                    'g' : {'costo' : -inf, 'pred' : []}}
         inicio = 'a'
         final = 'g'
         dimension = 6
@@ -80,12 +81,12 @@ if __name__ == "__main__":
                 'f' : {'g':4},
                 'g' : {}}
         etiquetas = {   'a' : {'costo' : inf, 'pred' : []},
-                    'b' : {'costo' : inf, 'pred' : []},
-                    'c' : {'costo' : inf, 'pred' : []},
-                    'd' : {'costo' : inf, 'pred' : []},
-                    'e' : {'costo' : inf, 'pred' : []},
-                    'f' : {'costo' : inf, 'pred' : []},
-                    'g' : {'costo' : inf, 'pred' : []}}
+                    'b' : {'costo' : -inf, 'pred' : []},
+                    'c' : {'costo' : -inf, 'pred' : []},
+                    'd' : {'costo' : -inf, 'pred' : []},
+                    'e' : {'costo' : -inf, 'pred' : []},
+                    'f' : {'costo' : -inf, 'pred' : []},
+                    'g' : {'costo' : -inf, 'pred' : []}}
         inicio = 'a'
         final = 'g'
         dimension = 6

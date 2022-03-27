@@ -14,3 +14,9 @@ El costo menor es de inf
 El camino es de: 
 0 5 
 ---------------------------------------------------------------------------
+El grafo tiene un ciclo negativo 
+
+El costo menor es de inf 
+El camino es de: 
+1 5 
+---------------------------------------------------------------------------
