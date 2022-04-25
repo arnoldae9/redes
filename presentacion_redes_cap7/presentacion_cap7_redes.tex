@@ -1,0 +1,219 @@
+\documentclass{beamer}
+\usepackage[spanish]{babel}
+\usepackage{tikz} 
+\usepackage{tikz-network}
+\usepackage[utf8]{inputenc}
+\usetheme{CambridgeUS}
+\title{Shortest Aumenting Problem Algorithm}
+\author{Lic. Eder Ismael Alanís Fernández\\ Lic. Arnoldo Del Toro Peña }
+\institute{Universidad Autónoma de Nuevo León}
+\begin{document}
+
+\begin{frame}
+ \titlepage
+\end{frame}
+
+\begin{frame}
+ \frametitle{Correctness of the Algorithm}
+\begin{block}<1->{Lema.}
+El algoritmo de la ruta de aumento más corta mantiene etiquetas de distancia válidas en cada paso. además, cada operación de reetiquetado (o retirada) aumenta estrictamente la etiqueta de distancia de un nodo. 
+\end{block}
+
+\begin{block}<2->{Teorema.}
+El algoritmo de ruta de aumento más corto calcula correctamente un flujo máximo.
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+ \frametitle{Ejemplo 1}
+ \tikzstyle{mi nodo}= [circle,draw,blue,fill=blue!15]
+ \centering
+\begin{tikzpicture}
+\Vertex[IdAsLabel]{A} 
+\Vertex[IdAsLabel, x=2, y = 2]{B}
+\Vertex[IdAsLabel,x=2, y = -2]{C}
+\Vertex[IdAsLabel,x=5, y=2]{D}
+\Vertex[IdAsLabel,x=5, y=-2]{E}
+\Vertex[IdAsLabel,x=7, y=0]{F}
+\Edge[Direct,label = 3](A)(B)
+\Edge[Direct,label = 3](B)(D)
+\Edge[Direct,label = 3](D)(F)
+\Edge[Direct,label = 4](A)(C)
+\Edge[Direct,label = 2](C)(E)
+\Edge[Direct,label = 5](E)(F)
+\Edge[Direct,label = 1,distance = 0.3](B)(E)
+\Edge[Direct,label = 1,distance = 0.3](C)(D)
+\end{tikzpicture}
+ 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ejemplo 1}
+ \tikzstyle{mi nodo}= [circle,draw,blue,fill=blue!15]
+ \centering
+\begin{tikzpicture}
+\Vertex[IdAsLabel]{A} 
+\Vertex[IdAsLabel, x=2, y = 2]{B}
+\Vertex[IdAsLabel,x=2, y = -2]{C}
+\Vertex[IdAsLabel,x=5, y=2]{D}
+\Vertex[IdAsLabel,x=5, y=-2]{E}
+\Vertex[IdAsLabel,x=7, y=0]{F}
+\Edge[Direct,label = 3,color = red](A)(B)
+\Edge[Direct,label = 3,color = red](B)(D)
+\Edge[Direct,label = 3,color = red](D)(F)
+\Edge[Direct,label = 4](A)(C)
+\Edge[Direct,label = 2](C)(E)
+\Edge[Direct,label = 5](E)(F)
+\Edge[Direct,label = 1,distance = 0.3](B)(E)
+\Edge[Direct,label = 1,distance = 0.3](C)(D)
+\end{tikzpicture} \newline
+El mínimo es 3.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ejemplo 1}
+ \tikzstyle{mi nodo}= [circle,draw,blue,fill=blue!15]
+ \centering
+\begin{tikzpicture}
+\Vertex[IdAsLabel]{A} 
+\Vertex[IdAsLabel, x=2, y = 2]{B}
+\Vertex[IdAsLabel,x=2, y = -2]{C}
+\Vertex[IdAsLabel,x=5, y=2]{D}
+\Vertex[IdAsLabel,x=5, y=-2]{E}
+\Vertex[IdAsLabel,x=7, y=0]{F}
+\Edge[Direct,label = 3](B)(A)
+\Edge[Direct,label = 3](D)(B)
+\Edge[Direct,label = 3](F)(D)
+\Edge[Direct,label = 4](A)(C)
+\Edge[Direct,label = 2](C)(E)
+\Edge[Direct,label = 5](E)(F)
+\Edge[Direct,label = 1,distance = 0.3](B)(E)
+\Edge[Direct,label = 1,distance = 0.3](C)(D)
+\end{tikzpicture} 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ejemplo 1}
+ \tikzstyle{mi nodo}= [circle,draw,blue,fill=blue!15]
+ \centering
+\begin{tikzpicture}
+\Vertex[IdAsLabel]{A} 
+\Vertex[IdAsLabel, x=2, y = 2]{B}
+\Vertex[IdAsLabel,x=2, y = -2]{C}
+\Vertex[IdAsLabel,x=5, y=2]{D}
+\Vertex[IdAsLabel,x=5, y=-2]{E}
+\Vertex[IdAsLabel,x=7, y=0]{F}
+\Edge[Direct,label = 3](B)(A)
+\Edge[Direct,label = 3](D)(B)
+\Edge[Direct,label = 3](F)(D)
+\Edge[Direct,label = 4,color = red](A)(C)
+\Edge[Direct,label = 2,color = red](C)(E)
+\Edge[Direct,label = 5,color = red](E)(F)
+\Edge[Direct,label = 1,distance = 0.3](B)(E)
+\Edge[Direct,label = 1,distance = 0.3](C)(D)
+\end{tikzpicture} \newline
+El mínimo es 2.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ejemplo 1}
+ \tikzstyle{mi nodo}= [circle,draw,blue,fill=blue!15]
+ \centering
+\begin{tikzpicture}
+\Vertex[IdAsLabel]{A} 
+\Vertex[IdAsLabel, x=2, y = 2]{B}
+\Vertex[IdAsLabel,x=2, y = -2]{C}
+\Vertex[IdAsLabel,x=5, y=2]{D}
+\Vertex[IdAsLabel,x=5, y=-2]{E}
+\Vertex[IdAsLabel,x=7, y=0]{F}
+\Edge[Direct,label = 3](B)(A)
+\Edge[Direct,label = 3](D)(B)
+\Edge[Direct,label = 3](F)(D)
+\Edge[Direct,label = 2](C)(A)
+\Edge[Direct,label = 2,bend = 30](A)(C)
+\Edge[Direct,label = 2](E)(C)
+\Edge[Direct,label = 3,bend = 30](E)(F)
+\Edge[Direct,label = 2](F)(E)
+\Edge[Direct,label = 1,distance = 0.3](B)(E)
+\Edge[Direct,label = 1,distance = 0.3](C)(D)
+\end{tikzpicture} 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ejemplo 1}
+ \tikzstyle{mi nodo}= [circle,draw,blue,fill=blue!15]
+ \centering
+\begin{tikzpicture}
+\Vertex[IdAsLabel]{A} 
+\Vertex[IdAsLabel, x=2, y = 2]{B}
+\Vertex[IdAsLabel,x=2, y = -2]{C}
+\Vertex[IdAsLabel,x=5, y=2]{D}
+\Vertex[IdAsLabel,x=5, y=-2]{E}
+\Vertex[IdAsLabel,x=7, y=0]{F}
+\Edge[Direct,label = 3](B)(A)
+\Edge[Direct,label = 3,color=red](D)(B)
+\Edge[Direct,label = 3](F)(D)
+\Edge[Direct,label = 2](C)(A)
+\Edge[Direct,label = 2,bend = 30,color=red](A)(C)
+\Edge[Direct,label = 2](E)(C)
+\Edge[Direct,label = 3,bend = 30,color=red](E)(F)
+\Edge[Direct,label = 2](F)(E)
+\Edge[Direct,label = 1,distance = 0.3,color=red](B)(E)
+\Edge[Direct,label = 1,distance = 0.3,color=red](C)(D)
+\end{tikzpicture} \newline
+El mínimo es 1.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ejemplo 1}
+ \tikzstyle{mi nodo}= [circle,draw,blue,fill=blue!15]
+ \centering
+\begin{tikzpicture}
+\Vertex[IdAsLabel]{A} 
+\Vertex[IdAsLabel, x=2, y = 2]{B}
+\Vertex[IdAsLabel,x=2, y = -2]{C}
+\Vertex[IdAsLabel,x=5, y=2]{D}
+\Vertex[IdAsLabel,x=5, y=-2]{E}
+\Vertex[IdAsLabel,x=7, y=0]{F}
+\Edge[Direct,label = 3](B)(A)
+\Edge[Direct,label = 2](D)(B)
+\Edge[Direct,label = 1,bend = 30](B)(D)
+\Edge[Direct,label = 3](F)(D)
+\Edge[Direct,label = 3](C)(A)
+\Edge[Direct,label = 1,bend = 30](A)(C)
+\Edge[Direct,label = 2](E)(C)
+\Edge[Direct,label = 2,bend = 30](E)(F)
+\Edge[Direct,label = 3](F)(E)
+\Edge[Direct,label = 1,distance = 0.3](E)(B)
+\Edge[Direct,label = 1,distance = 0.3](D)(C)
+\end{tikzpicture} 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ejemplo 1}
+ \tikzstyle{mi nodo}= [circle,draw,blue,fill=blue!15]
+ \centering
+\begin{tikzpicture}
+\Vertex[IdAsLabel]{A} 
+\Vertex[IdAsLabel, x=2, y = 2]{B}
+\Vertex[IdAsLabel,x=2, y = -2]{C}
+\Vertex[IdAsLabel,x=5, y=2]{D}
+\Vertex[IdAsLabel,x=5, y=-2]{E}
+\Vertex[IdAsLabel,x=7, y=0]{F}
+\Edge[Direct,label = 3](B)(A)
+\Edge[Direct,label = 2](D)(B)
+\Edge[Direct,label = 1,bend = 30](B)(D)
+\Edge[Direct,label = 3](F)(D)
+\Edge[Direct,label = 3](C)(A)
+\Edge[Direct,label = 1,bend = 30,color = red](A)(C)
+\Edge[Direct,label = 2](E)(C)
+\Edge[Direct,label = 2,bend = 30](E)(F)
+\Edge[Direct,label = 3](F)(E)
+\Edge[Direct,label = 1,distance = 0.3](E)(B)
+\Edge[Direct,label = 1,distance = 0.3](D)(C)
+\end{tikzpicture} \newline
+El algoritmo se detiene.
+\end{frame}
+
+\end{document}

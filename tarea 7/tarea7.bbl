@@ -1,0 +1,18 @@
+\begin{thebibliography}{VRDJ17}
+
+\bibitem[Chu01]{chun2001core}
+Wesley Chun.
+\newblock {\em Core python programming}, volume~1.
+\newblock Prentice Hall Professional, 2001.
+
+\bibitem[VRDJ91]{van1991guia}
+Guido Van~Rossum and Fred~L Drake~Jr.
+\newblock Gu{\'\i}a de aprendizaje de python.
+\newblock {\em Release}, 2, 1991.
+
+\bibitem[VRDJ17]{van2017tutorial}
+Guido Van~Rossum and Fred~L Drake~Jr.
+\newblock {\em El tutorial de Python}.
+\newblock Python Software Foundation, 2017.
+
+\end{thebibliography}

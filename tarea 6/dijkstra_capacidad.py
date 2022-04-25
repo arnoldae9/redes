@@ -39,12 +39,12 @@ if __name__ == "__main__":
         opcion = int(input("Digite una opcion: "))
 
     if opcion == 1:  #TODO agregar por elif grafo,etiquetas,inicio,final,dimension
-        grafo = {   'a' : {'b':2,'c':4}, 
-                    'b' : {'a':2,'c':3, 'd':8},
-                    'c' : {'a':4,'b':3, 'e': 5, 'd':2},
-                    'd' : {'b':8,'c':2,'e':11,'f':22},
-                    'e' : {'c':5,'d':11,'f':1},
-                    'f' : {'d':22,'e':1}}
+        grafo = {   'a' : {'b':4,'c':3}, 
+                    'b' : {'c':2, 'd':5, 'e':6},
+                    'c' : {'d':7,'e':8},
+                    'd' : {'f':2},
+                    'e' : {'f':4},
+                    'f' : {}}
         etiquetas = {   'a' : {'costo' : inf, 'pred' : []},
                     'b' : {'costo' : -inf, 'pred' : []},
                     'c' : {'costo' : -inf, 'pred' : []},

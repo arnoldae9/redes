@@ -16,15 +16,29 @@ G.add_node('f')
 # ejemplo 3 dirigido
 # elist = [('a', 'b', 1), ('a', 'c', 2), ('a', 'd', 1), ('b', 'c', 2), ('b', 'e', 1), ('c', 'd', 1), ('c', 'e', 2), ('c', 'f', 2), ('d', 'f', 5), ('e', 'f', 3), ('e', 'g', 1), ('f', 'g', 4)]
 # ejemplo 4 negativo no dirigido
-elist = [('a', 'b', 24), ('a', 'c',18), ('b', 'a', 24), ('b', 'c', 25), ('b', 'd', 30), ('c', 'a', 18), ('c', 'b', 25), ('c', 'e', 27), ('c', 'd', 24), ('d', 'b', 30), ('d', 'c', 24), ('d', 'e', 33), ('d', 'f', 0), ('e', 'c', 27), ('e', 'd', 33), ('e', 'f', 23), ('f', 'd', 0), ('f', 'e', 23)]
+# elist = [('a', 'b', 24), ('a', 'c',18), ('b', 'a', 24), ('b', 'c', 25), ('b', 'd', 30), ('c', 'a', 18), ('c', 'b', 25), ('c', 'e', 27), ('c', 'd', 24), ('d', 'b', 30), ('d', 'c', 24), ('d', 'e', 33), ('d', 'f', 0), ('e', 'c', 27), ('e', 'd', 33), ('e', 'f', 23), ('f', 'd', 0), ('f', 'e', 23)]
 # ejemplo 5 negativo no dirigido
 # elist = [('a', 'b', 2), ('a', 'c', -5), ('a', 'd', 4), ('b', 'a', 2), ('b', 'c', 2), ('b', 'e', -7), ('c', 'a', -5), ('c', 'b', 2), ('c', 'd', 1), ('c', 'e', 4), ('c', 'f', 3), ('d', 'a', 4), ('d', 'c', 1), ('d', 'f', 4), ('e', 'b', -7), ('e', 'c', 4), ('e', 'f', 1), ('e', 'g', 5), ('f', 'c', 3), ('f', 'd', 4), ('f', 'e', 1), ('f', 'g', 7), ('g', 'e', 5), ('g', 'f', 7)]
 # ejemplo 6 negativo bellman ford
 # elist = [('a', 'b', 1), ('a', 'c', -2), ('a', 'd', 1), ('b', 'c', 2), ('b', 'e', 1), ('c', 'd', 1), ('c', 'e', -2), ('c', 'f', 2), ('d', 'f', 5), ('e', 'f', 3), ('e', 'g', 1), ('f', 'g', 4)]
 # ejemplo 7 negativo bellman ford
 # elist = [('a', 'b', 1), ('a', 'c', 2), ('a', 'd', 1), ('b', 'c', 2), ('b', 'e', 1), ('c', 'd', 1),
-        #  ('c', 'e', -2), ('c', 'f', 2), ('d', 'f', -5), ('e', 'f', 3), ('e', 'g', 1), ('f', 'g', 4)]
-
+#  ('c', 'e', -2), ('c', 'f', 2), ('d', 'f', -5), ('e', 'f', 3), ('e', 'g', 1), ('f', 'g', 4)]
+# ejemplo 8 dicnis
+elist = [('a', 'b', 1), ('a', 'c', 2), ('a', 'd', 1), ('b', 'c', 2), ('b', 'e', 1), ('c', 'd', 1),
+# ('c', 'e', 2), ('c', 'f', 2), ('d', 'f', 5), ('e', 'f', 3), ('e', 'g', 1), ('f', 'g', 4)]
+# ejemplo 9 flow max networkx
+""" 
+G = nx.DiGraph()
+G.add_edge("x", "a", capacity=3.0)
+G.add_edge("x", "b", capacity=1.0)
+G.add_edge("a", "c", capacity=3.0)
+G.add_edge("b", "c", capacity=5.0)
+G.add_edge("b", "d", capacity=4.0)
+G.add_edge("d", "e", capacity=2.0)
+G.add_edge("c", "y", capacity=2.0)
+G.add_edge("e", "y", capacity=3.0)
+ """
 G.add_weighted_edges_from(elist)
 # G.add_edge('A', 'B', weight=1)
 # G.add_edge('A', 'C', weight=2)
@@ -62,4 +76,4 @@ nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
 # print("Resultado en base a algoritmo dijkstra: ",x)
 # print("Resultado en base a algoritmo bellman ford: ", y)
 # Guardar la imagen en formato eps no admite jpg
-plt.savefig("ejemplo12.eps")
+plt.savefig("ejemplo9.eps")
