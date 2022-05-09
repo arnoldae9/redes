@@ -1,0 +1,126 @@
+\documentclass[12 pt]{report}
+\usepackage[margin = 1 in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, amsthm, graphicx, lipsum}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=red,
+    pdftitle={Notas clase 9},
+    }
+\usepackage{fancyvrb}
+\usepackage{fancyhdr, lastpage}
+\pagestyle{fancy}
+\lhead{Notas clase 9}
+\rhead{Universidad Autónoma de Nuevo León}
+\cfoot{Page \thepage\ of \pageref{LastPage}}
+
+\usepackage{etoolbox} %Use carefully!
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+
+\usepackage[Glenn]{fncychap}
+%Options: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
+
+
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+
+\newtcbtheorem{theo}%
+  {Theorem}{}{theorem}
+  
+\usepackage{siunitx}
+\usepackage{setspace}
+\onehalfspacing
+\begin{document}
+\large
+Assumptions
+
+En la práctica está restricción no es realmente restrictiva ya que las computadoras pueden convertir los números racionales en números enteros multiplicando por algún número.
+Indebido caso que la red no sea directa ya se vio en un capítulo anterior qué se puede convertir en una red directa o dirigida.
+La siguiente restricción se justifico en el capítulo 6 en el cual si la capacidad no es igual a cero la solución es infactible.
+Esta condición le agregamos por si el problema no tuviera solución factible.
+Esta condición no pierde generalidad ya que la transformación de costos negativos a positivos ya se vio en una sección pasada sin embargo es importante señalar que si se tienen ciclos negativos con capacidades infinitas puede ser que su valor de objetivo sea ilimitado.
+\\
+Applications
+
+Arcos de producción
+Arcos conectados a planta estos arcos consisten en unos costos de producción del modelo en la planta, se puede manejar controles de mínimo de producción requerida o máxima producción necesaria.
+Arcos de transporte estos arcos están conectados de la planta a lugares de distribución difusa arcos cuentan con costos de transportación.
+Arcos de demanda estos arcos están conectados desde  los centros de distribución a los puntos de venta estos arcos tienen costo cero y una demanda por abajo positiva.
+\\
+X-ray
+
+Prácticamente se trata de una matriz binaria de distribución en el cual se necesita determinar los flujos de sangre.
+Racial schools balancing
+Este problema es muy parecido a uno que ya teníamos, en el cual se trataba de balancear a los alumnos en razón a su e en este caso solamente tendremos dos blancos y negros y lo que será es hacer dos subconjuntos anteriores a las escuelas ese prima y ese vi prima en el cual en ese prima solamente llegaran alumnos de la etnia negra y en ese vi prima llegaran alumnos blancos los arcos entre la cantidad de alumnos blancos y negros denotan las relativas distancias de los alumnos a los nodos s prima y s vi prima. De los nodos s.vi prima y prima a los nodos s qué son las escuelas, los arcos que corresponden a ese prima tienen capacidades mínimas y máximas mientras que los arcos de s mi prima que pertenecen a los alumnos blancos no tienen límite de capacidad a este mismo problema se agregan unos arcos hacia el nodo t en el cual tienen capacidades qué son igual a la suma de alumnos blancos y negros.
+\\
+Airplane
+Se tiene un diagrama en el cual tenemos ciudades desde 1 hasta n y c tienen cantidades bij qué representan el número de pasajeros disponibles del nodo y nodo j, además tenemos una cantidad fij qué representa la tarifa por pasajero del nodo i al nodo j, la capacidad de pasajeros está denotado por p.
+A la aerolínea le gustaría determinar el número de pasajeros que el avión debe de llevar entre los distintos orígenes a los distintos destinos con el fin de maximizar la tarifa total por viaje sin exceder nunca la capacidad del avión.
+\\
+Scheduling
+
+Es un caso especial de un problema de asignación de trabajos, este tipo de problemas suelen ser muy complicados debido a que cada máquina tiene diferentes tiempos de proceso pero si este tiempo se tiende a volver uniforme se puede modelar como un problema de flujo de costo mínimo.
+\\
+Linear 
+
+La mayoría de los problemas lineales son de la siguiente forma sí suponemos que tenemos un problema específico en el cual tenemos una matriz de ceros y unos, podemos mostrar que este problema se puede transformar en un problema de flujo de costo mínimo.
+Prácticamente lo que hacemos es sacar su forma aumentada hacer algunas transformaciones lineales para encontrar la siguiente matriz y una vez teniendo esta matriz lo que vamos a hacer es encontrar o dibujar su diagrama.
+Cada columna contiene un 1 y un menos 1 la asignación de x1 x2 etcétera será por columnas y la dirección está definida del positivo al negativo en el caso de las columnas de las letras y de igual manera su dirección está determinada del uno al menos uno pero de forma inversa cómo podemos ver en el siguiente dibujo.
+Optimality conditions
+\\
+Ciclo negativo
+
+La demostración que dan en que como todos los ciclos son o negativos entonces tenemos la siguiente ecuación y como nuestro punto seleccionados óptimo tenemos la siguiente ecuación lo cual nos lleva a una igualdad.
+\\
+Costo reducido
+
+Está demostración es equivalente a signo negativo partiremos de una solución que satisface las las condiciones de costo reducido por lo tanto la sumatoria de los arcos en el ciclo w de Los costos reducidos es igual a la sumatoria de los arcos en el ciclo doble de Los costos que son mayor igual a 0 por lo cual contiene un ciclo no negativo.
+Por el contrario suponga que g no contiene un ciclo negativo entonces las etiquetas de distancia satisface la condición de que la distancia del no de llegada es menor a la suma de la distancia del no de salida más el costo entre ellos sí restamos estas ecuaciones podemos encontrar qué Los costos reducidos son mayor igual a cero sí definimos api como menos de por lo cual se satisfacen las condiciones de optimalidad te costó reducido.\\
+Slackness\\
+Tenemos 3 casos
+
+Si el costo reducido es mayor a 0 la red de residuos no puede contener el arco Ji por lo tanto x y j* tiene que ser cero.
+
+Sí x y j* se encuentra entre 0 y uij la red de residuos contiene ambos arcos lo cual implica qué Los costos reducidos en ambas direcciones son mayor a cero pero si recordamos estos costos reducidos son iguales pero de signo contrario lo cual implica que estos costos reducidos son 0.
+
+Caso  tres si los costos reducidos son negativos la red residual no puede contener al arco i j por lo tanto xij* es igual a uij.\\
+Duality
+
+Prácticamente se hace una transformación lineal de dualidad para poder encontrar el equivalente.\\
+Weak duality
+
+Multiplicamos por x y j hacemos la implicación de costos reducidos utilizamos álgebra encontramos la desigualdad.\\
+Strong\\
+Este teorema nos permite establecer una igualdad entre w y z.
+Cycle canceling
+Empezamos estableciendo un flujo factible en nuestra red.
+Construimos el grajo de residuales.
+Vemos si existe un ciclo negativo y lo identificamos.
+Encontramos (Delta) el mínimo de los flujos dentro de este mismo ciclo negativo.
+Aumentamos el ciclo Delta unidades.
+Repetimos hasta que no se encuentren ciclos negativos.\\
+Successive
+
+X = 0, pi = 0.
+Iniciales amos los conjuntos e y d.
+Mientras el conjunto que no esté vacío repetiremos lo siguiente:
+
+Seleccionamos un nodo en e y un nodo en d.
+
+Determinamos el camino más corto desde el nodo s a 
+todos los demás nodos respecto a los costos reducidos.
+
+Determinamos el camino más corto del nodo k al nodo l.
+
+Actualizamos pi como py  menos d.
+
+Hacemos Delta como el mínimo entre e(k) -e(l)  y el mínimo de los rij dentro del camino más corto p.
+
+Aumentamos Delta unidades el flujo en el camino p.
+
+Actualizamos x, G, E,D y costos reducidos.
+
+\end{document}
