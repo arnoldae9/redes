@@ -77,7 +77,7 @@ while 1:
     while f>0:
         f=dfs(1,INF) #TODO bucle del algoritmo.
         ans+=f
-
+print(cap)
 if cap[1] == [0]*MAXN:
     print("El minimo corte es el nodo de origen.")
 aux2 = copy.deepcopy(cap) #TODO matrix aux auxiliar residuales
@@ -110,15 +110,7 @@ for i in nodosaccesibles:
             cortes.append((i,j))
 print("El valor de corte minimo es: ", ans)
 
-escribir(texto,ans,cortes) # texto,respuesta,lista de cortes
-ans = input("Desea ejecutar Networkx ? \n")
-if ans == "si":
-    nodoinicio = int(input("Digite el nodo inicial \n"))
-    nodofinal = int(input("Digite el nodo final \n"))
-    flow_value = nx.maximum_flow_value(G, nodoinicio , nodofinal)
-    print("El flujo máximo es: ",flow_value)
-else:
-    print("fin")
+
     
     
     
