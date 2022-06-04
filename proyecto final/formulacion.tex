@@ -1,0 +1,39 @@
+\documentclass[12 pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+
+\begin{document}
+
+\section*{Parámetros}
+$V$ : Conjunto de nodos $\{ 0, \cdots, n \}$ \\
+$A$ : Conjunto de arcos que necesitan pintura. \\
+$A'$ : Conjunto de arcos que no necesitan pintura. \\
+$v_p$ : vehículos de pintura. \\ 
+$v_r$ : vehículo de refill. \\ 
+$R$ : el conjunto de vehículos de pintura.\\
+$R'$: Conjunto de vehículos de refill.\\ 
+$p_{ij}$ : la demanda en pintura para pintar la calle del nodo $i$ al nodo $j$.\\
+$v_{ijp}$ : 1 si el arco $ij$ se pinta por el vehículo p, 0 en otro caso. \\
+$s_{ijp}$ : velocidad en el arco $ij$ cuando el vehículo $p$ no esta pintando. \\
+$s^{'}_{ijp}$ : velocidad en el arco $ij$ cuando el vehículo $p$ esta pintando. \\ 
+$Ve_{ijp}$ : velocidad del vehículo $p$ en el arco $ij$. \\
+$t_{ijp}$: tiempo de recorrido sin pintar del arco $i$ al arco $j$ del vehículo $p$. \\
+$t'_{ijp}$: tiempo de recorrido pintando del arco $i$ al arco $j$ del vehículo $p$. \\
+$N_p$: Nodo punto de refill para el vehículo $p$. 
+
+
+
+\section*{Ecuaciones}
+\begin{center}
+\begin{gather} 
+v_{p} \leq Q_p \hspace{2 cm} \forall p \in R \\
+v_r \geq \sum_{p} Q_p \\
+s^{'}_{ijp} \leq s_{ijp} \label{eq:3} \hspace{2 cm} \forall (i,j) \in A \hspace{1 cm} \forall p \in R\\
+Ve_{ijp} = s_{ij}(1-v_{ijp}) + s^{'}_{ij}v_{ijp}  \hspace{2 cm} \forall (i,j) \in A, \hspace{1 cm} \forall p \in R \\ 
+Ve_{ijp} = s_{ij}  \hspace{1 cm} \forall (i,j) \in A', \hspace{1 cm} \forall p \in R 
+\end{gather}
+\end{center}
+Ecuación posiblemente redundante \ref{eq:3}. \\
+Falta como obtener $t_{ijp}$ y $t'_{ijp}$
+\end{document}
